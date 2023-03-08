@@ -5,8 +5,7 @@ OBJ_DIR = obj
 INC_DIR = include
 
 SRC =		main.cpp \
-			Bureaucrat.cpp \
-			Form.cpp
+			Bureaucrat.cpp
  
 HEADER = Bureaucrat.hpp
 

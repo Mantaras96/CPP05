@@ -1,65 +1,57 @@
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/Form.hpp"
 
-int	main(void)
+int main(void)
 {
-	try
+	std::cout << "-------------------------------------------------------" << std::endl;
 	{
-		Bureaucrat	joe = Bureaucrat("Joe", 1);
-		std::cout << joe << std::endl;
-		joe.decrementGrade();
-		std::cout << joe << std::endl;
-		joe.incrementGrade();
-		std::cout << joe << std::endl;
-		joe.incrementGrade();
-		std::cout << joe << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << std::endl;
+		std::cout << std::endl;
 
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		Bureaucrat *a = new Bureaucrat("Assistant", 145);
+		Bureaucrat *b = new Bureaucrat("CEO", 1);
+		Form *c = new Form("Rent Contract", 140, 100);
+		std::cout << std::endl;
 
-	try
-	{
-		Bureaucrat		jack = Bureaucrat("Jack", 150);
-		std::cout << jack << std::endl;
-		jack.incrementGrade();
-		std::cout << jack << std::endl;
-		jack.decrementGrade();
-		std::cout << jack << std::endl;
-		jack.decrementGrade();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << std::endl;
+		std::cout << "\033[34mTesting\033[0m" << std::endl;
+		std::cout << a;
+		std::cout << b;
+		std::cout << c;
 
+		// Assistant signs the Form
+		try
+		{
+			// c->beSigned(*a);
+			a->signForm(*c);
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "\033[33m" << a->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
+		}
 
-	try
-	{
-		Bureaucrat		john = Bureaucrat("John", 0);
-		std::cout << john << std::endl;
-		john.decrementGrade();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << std::endl;
+		// CEO signs the Form
+		std::cout << c;
+		try
+		{
+			c->beSigned(*b);
+			// b->signForm(*c);
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "\033[33m" << b->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
+		}
+		std::cout << c;
 
+		// try signing the from again
+		b->signForm(*c);
+		std::cout << std::endl;
 
-	try
-	{
-		Bureaucrat		jillian = Bureaucrat("Jillian", 151);
-		std::cout << jillian << std::endl;
-		jillian.incrementGrade();
+		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		delete a;
+		delete b;
+		delete c;
+		std::cout << std::endl;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
-	return 0;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	return (0);
 }

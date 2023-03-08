@@ -8,14 +8,17 @@
 
 class Bureaucrat;
 
-class Form{
+class Form:
+    {
     private:
-        const std::string name;
+        std::string const name;
         bool isSigned;
-        const int  gradeToSign;
-        const int gradeToExecute;
+        int const gradeToSign;
+        int const gradeToExecute;
+        Form();
     public:
         Form(std::string name, int gradeToSign, int gradeToExecute);
+        Form(Form const &src);
         ~Form();
         Form &operator=(Form const &rhs);
 
@@ -35,9 +38,10 @@ class Form{
         bool getIsSigned() const;
         int getGradeToSign() const;
         int getGradeToExecute() const;
+
         void beSigned(Bureaucrat const &bureaucrat);
 
-    };
+    }
 
     std::ostream	&operator<<( std::ostream &o, const Form &f );
 
