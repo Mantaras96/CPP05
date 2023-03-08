@@ -1,6 +1,14 @@
 #include "../inc/Form.hpp"
 #include "../inc/Bureaucrat.hpp"
 
+Form::Form (void): name("default"), isSigned(false), gradeToSign(0), gradeToExecute(0)
+{
+}
+
+Form::Form( const Form &f ): name(f.name), isSigned(false), gradeToSign(f.gradeToSign), gradeToExecute(f.gradeToExecute)
+{
+}
+
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
     {
         if (gradeToSign < 1 || gradeToExecute < 1)

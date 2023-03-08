@@ -15,9 +15,13 @@ class Form{
         const int  gradeToSign;
         const int gradeToExecute;
     public:
-        Form(std::string name, int gradeToSign, int gradeToExecute);
+        // Canonical //
+        Form(void);
+        Form( const Form &f );
         ~Form();
         Form &operator=(Form const &rhs);
+
+        Form(std::string name, int gradeToSign, int gradeToExecute);
 
         class GradeTooHighException: public std::exception
         {
@@ -36,7 +40,6 @@ class Form{
         int getGradeToSign() const;
         int getGradeToExecute() const;
         void beSigned(Bureaucrat const &bureaucrat);
-
     };
 
     std::ostream	&operator<<( std::ostream &o, const Form &f );

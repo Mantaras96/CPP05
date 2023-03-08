@@ -5,7 +5,11 @@ OBJ_DIR = obj
 INC_DIR = include
 
 SRC =		main.cpp \
-			Bureaucrat.cpp
+			Bureaucrat.cpp \
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp
  
 HEADER = Bureaucrat.hpp
 
