@@ -61,11 +61,13 @@ void Bureaucrat::decrementGrade()
     grade++;
 }
 
-std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)
+std::ostream	&operator<<( std::ostream &o, const Bureaucrat &b )
 {
-    o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << std::endl;
-    return o;
+	o << "Bureaucrat: " << b.getName() << std::endl;
+	o << "Grade: " << b.getGrade() << std::endl;
+	return (o);
 }
+
 
 void Bureaucrat::signForm( Form &f ) const
 {
@@ -75,7 +77,6 @@ void Bureaucrat::signForm( Form &f ) const
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << this->getName() << " couldn't sign " << f.getName() << " because ";
-		std::cout << e.what() << '\n';
+		std::cout << " " << this->getName() << " couldn't sign " << f.getName() << " because " << e.what() << '\n';
 	}
 }
